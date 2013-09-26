@@ -24,6 +24,19 @@
 
 @implementation TWTwitterFeedViewController
 
+#pragma mark loading stuff
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    _nameLabel.text = @"";
+    [self updateTimeline];
+}
+
+- (IBAction)refreshView:(id)sender {
+    [self updateTimeline];
+}
+
+#pragma mark control
 
 - (void)showActivityStatusBar {
     UIApplication *app = [UIApplication sharedApplication];
@@ -35,6 +48,7 @@
     app.networkActivityIndicatorVisible = NO;
 }
 
+#pragma mark load tweets and stories
 
 - (void)updateTimeline {
     [self showActivityStatusBar];
@@ -125,29 +139,12 @@
     
     return story;
 }
-- (IBAction)refreshView:(id)sender {
-    [self updateTimeline];
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-
-    
-//    _tweetTable.contentInset = UIEdgeInsetsMake(-36, 0, 0, 0);
-	// Do any additional setup after loading the view, typically from a nib.
-    _nameLabel.text = @"";
-    [self updateTimeline];
-}
 
 #pragma mark UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [_statuses count];
 }
-
-// Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
-// Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TWTweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TWTweetCell"];

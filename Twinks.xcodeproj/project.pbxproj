@@ -40,7 +40,7 @@
 		9DC6530517F46A82004D24F9 /* TWStory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DC6530417F46A82004D24F9 /* TWStory.m */; };
 		9DC6530817F46DD3004D24F9 /* TWStoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DC6530717F46DD3004D24F9 /* TWStoryViewController.m */; };
 		9DC6530A17F476F5004D24F9 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DC6530917F476F5004D24F9 /* Social.framework */; };
-		9DC6530D17F4781A004D24F9 /* TWSafariActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DC6530C17F4781A004D24F9 /* TWSafariActivity.m */; };
+		9DC6530D17F4781A004D24F9 /* TUSafariActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DC6530C17F4781A004D24F9 /* TUSafariActivity.m */; };
 		9DC6531217F4788F004D24F9 /* Safari.png in Resources */ = {isa = PBXBuildFile; fileRef = 9DC6530E17F4788F004D24F9 /* Safari.png */; };
 		9DC6531317F4788F004D24F9 /* Safari@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9DC6530F17F4788F004D24F9 /* Safari@2x.png */; };
 		9DC6531417F4788F004D24F9 /* Safari@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 9DC6531017F4788F004D24F9 /* Safari@2x~ipad.png */; };
@@ -111,8 +111,8 @@
 		9DC6530617F46DD3004D24F9 /* TWStoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWStoryViewController.h; sourceTree = "<group>"; };
 		9DC6530717F46DD3004D24F9 /* TWStoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWStoryViewController.m; sourceTree = "<group>"; };
 		9DC6530917F476F5004D24F9 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
-		9DC6530B17F4781A004D24F9 /* TWSafariActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWSafariActivity.h; sourceTree = "<group>"; };
-		9DC6530C17F4781A004D24F9 /* TWSafariActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWSafariActivity.m; sourceTree = "<group>"; };
+		9DC6530B17F4781A004D24F9 /* TUSafariActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TUSafariActivity.h; sourceTree = "<group>"; };
+		9DC6530C17F4781A004D24F9 /* TUSafariActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TUSafariActivity.m; sourceTree = "<group>"; };
 		9DC6530E17F4788F004D24F9 /* Safari.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Safari.png; sourceTree = "<group>"; };
 		9DC6530F17F4788F004D24F9 /* Safari@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Safari@2x.png"; sourceTree = "<group>"; };
 		9DC6531017F4788F004D24F9 /* Safari@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Safari@2x~ipad.png"; sourceTree = "<group>"; };
@@ -199,8 +199,8 @@
 				9DC6530417F46A82004D24F9 /* TWStory.m */,
 				9DC6530617F46DD3004D24F9 /* TWStoryViewController.h */,
 				9DC6530717F46DD3004D24F9 /* TWStoryViewController.m */,
-				9DC6530B17F4781A004D24F9 /* TWSafariActivity.h */,
-				9DC6530C17F4781A004D24F9 /* TWSafariActivity.m */,
+				9DC6530B17F4781A004D24F9 /* TUSafariActivity.h */,
+				9DC6530C17F4781A004D24F9 /* TUSafariActivity.m */,
 			);
 			path = Twinks;
 			sourceTree = "<group>";
@@ -401,7 +401,7 @@
 				9DC652F917F45E15004D24F9 /* STTwitterHTML.m in Sources */,
 				9DC652FF17F45E5B004D24F9 /* TWTwitterFeedViewController.m in Sources */,
 				9DC652B117F45C36004D24F9 /* TWAppDelegate.m in Sources */,
-				9DC6530D17F4781A004D24F9 /* TWSafariActivity.m in Sources */,
+				9DC6530D17F4781A004D24F9 /* TUSafariActivity.m in Sources */,
 				9DC6530217F460A8004D24F9 /* TWTweetCell.m in Sources */,
 				9DC652DC17F45DC9004D24F9 /* TFHpple.m in Sources */,
 				9DC6530817F46DD3004D24F9 /* TWStoryViewController.m in Sources */,
@@ -537,6 +537,7 @@
 				);
 				INFOPLIST_FILE = "Twinks/Twinks-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -556,6 +557,7 @@
 				);
 				INFOPLIST_FILE = "Twinks/Twinks-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
