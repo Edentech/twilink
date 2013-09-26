@@ -12,6 +12,7 @@
 #import "TWTweetCell.h"
 #import "TWStory.h"
 #import "TWStoryViewController.h"
+#import "MBProgressHUD.h"
 
 @interface TWTwitterFeedViewController (){
     
@@ -39,11 +40,13 @@
 #pragma mark control
 
 - (void)showActivityStatusBar {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     UIApplication *app = [UIApplication sharedApplication];
     app.networkActivityIndicatorVisible = YES;
 }
 
 - (void)stopActivityStatusBar {
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     UIApplication *app = [UIApplication sharedApplication];
     app.networkActivityIndicatorVisible = NO;
 }
@@ -52,16 +55,43 @@
 
 - (void)updateTimeline {
     [self showActivityStatusBar];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        [self runTimelineUpdate];
+        dispatch_async(dispatch_get_main_queue(), ^{
+        });
+    });
+}
 
-    _nameLabel.text = @"";
+-(void) runTimelineUpdate {
+    static NSString *dateKey = @"REFRESH_RATE";
     
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSDate *date = [defaults objectForKey:dateKey];
+    
+    if (!date){
+        [defaults setObject:[NSDate date] forKey:dateKey];
+    } else {
+        int elapsedMinutes = abs([date timeIntervalSinceNow]/60);
+        if (elapsedMinutes < 5  && _statuses.count > 0){
+            [self stopActivityStatusBar];
+            return;
+        }
+        [defaults setObject:[NSDate date] forKey:dateKey];
+    }
+    
+    _nameLabel.text = @"";
     STTwitterAPI *twitter = [STTwitterAPI twitterAPIOSWithFirstAccount];
     
     [twitter verifyCredentialsWithSuccessBlock:^(NSString *username) {
         
         _nameLabel.text = [NSString stringWithFormat:@"Fetching timeline for @%@", username];
-        
-        [twitter getHomeTimelineSinceID:nil
+        NSString *lastId = nil;
+        if (_statuses.count > 0){
+            TWStory *stry = (TWStory *)[_statuses firstObject];
+            lastId = stry.tweetId;
+        }
+        [twitter getHomeTimelineSinceID:lastId
                                   count:50
                            successBlock:^(NSArray *statuses) {
                                
@@ -70,12 +100,14 @@
                                _nameLabel.text = [NSString stringWithFormat:@"@%@", username];
                                
                                //                               self.statuses = statuses;
-                               NSMutableArray *tempStatuses = [[NSMutableArray alloc] init];
+                               NSMutableArray *tempStatuses = [[NSMutableArray alloc] initWithArray:_statuses];
                                for (NSDictionary *d in statuses) {
                                    NSArray *urls = [d valueForKeyPath:@"entities.urls"];
                                    if (urls.count > 0){
                                        TWStory *story = [self storyFromStatus:d];
-                                       [tempStatuses addObject:story];
+                                       if (story){
+                                           [tempStatuses addObject:story];
+                                       }
                                    }
                                }
                                _statuses = tempStatuses;
@@ -89,7 +121,7 @@
         
     } errorBlock:^(NSError *error) {
         _nameLabel.text = [error localizedDescription];
-       [self stopActivityStatusBar];
+        [self stopActivityStatusBar];
     }];
 }
 
@@ -99,7 +131,7 @@
     
     NSArray *existing = [_statuses filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"tweetId = %@", idStr]];
     if (existing.count > 0){
-        return [existing firstObject];
+        return nil;
     }
 
     TWStory *story = [[TWStory alloc] init];
@@ -133,7 +165,7 @@
     story.user = screenName;
     story.tweet = [status valueForKey:@"text"];
     story.title = (title.length > 0) ? title : story.tweet;
-    story.avatar = userImageUrl;
+    story.avatar = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:userImageUrl]]];
     story.timestamp = dateString;
     story.url = u;
     
@@ -156,7 +188,7 @@
     TWStory *story = [_statuses objectAtIndex:indexPath.row];
     
     cell.titleText.text = story.title;
-    cell.titleImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:story.avatar]]];
+    cell.titleImage.image = story.avatar;
     
     cell.tweetLabel.text = [NSString stringWithFormat:@"@%@ | %@", story.user, story.timestamp];
     

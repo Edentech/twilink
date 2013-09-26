@@ -14,7 +14,7 @@
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) NSString *tweet;
 @property (nonatomic, retain) NSString *user;
-@property (nonatomic, retain) NSString *avatar;
+@property (nonatomic, retain) UIImage *avatar;
 @property (nonatomic, retain) NSString *timestamp;
 @property (nonatomic, retain) NSURL *url;
 

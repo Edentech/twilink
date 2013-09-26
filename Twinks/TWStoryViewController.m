@@ -35,12 +35,12 @@
     self.title = story.title;
     _tweetTextView.text = story.tweet;
     [_webView loadRequest:[NSURLRequest requestWithURL:story.url]];
-    _avatarImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:story.avatar]]];
+    _avatarImageView.image = story.avatar;
 }
 
 - (IBAction)actionTapped:(id)sender {
     TUSafariActivity *safari = [[TUSafariActivity alloc] init];
-    UIActivityViewController *activityView = [[UIActivityViewController alloc] initWithActivityItems:@[story.title, story.url] applicationActivities:@[safari]];
+    UIActivityViewController *activityView = [[UIActivityViewController alloc] initWithActivityItems:@[story.url, story.title] applicationActivities:@[safari]];
     [self presentViewController:activityView animated:YES completion:nil];
 }
 
