@@ -1,9 +1,95 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="13A584" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Ymh-Ch-J7F">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="13A584" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="YEB-fa-Qse">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <scenes>
+        <!--Reveal View Controller-->
+        <scene sceneID="RTz-J2-UrV">
+            <objects>
+                <viewController id="YEB-fa-Qse" customClass="SWRevealViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WP9-6D-UoK">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="Ymh-Ch-J7F" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegue" id="kSr-PI-CiZ"/>
+                        <segue destination="Grz-gB-exP" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegue" id="k8J-Eo-4Cf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fV8-7N-y4t" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-294" y="324"/>
+        </scene>
+        <!--Menu View Controller-->
+        <scene sceneID="2yH-wm-gXO">
+            <objects>
+                <viewController storyboardIdentifier="menu" id="Grz-gB-exP" customClass="TWMenuViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleAspectFit" id="2jQ-fa-wZw">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change Accounts" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2jJ-sh-fiH">
+                                <rect key="frame" x="20" y="52" width="174" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Vxs-O6-A5j">
+                                <rect key="frame" x="0.0" y="81" width="320" height="487"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="sectionIndexTrackingBackgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="i0G-pa-6ne" customClass="TWMenuCell">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="i0G-pa-6ne" id="U72-rb-6K3">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" id="Ycl-CC-LEZ">
+                                                    <rect key="frame" x="20" y="11" width="165" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="✓" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lhJ-UF-atM">
+                                                    <rect key="frame" x="199" y="10" width="23" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                                    <color key="textColor" red="0.022200443125172165" green="0.056041892765532828" blue="0.67807614800000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <connections>
+                                            <outlet property="checkLabel" destination="lhJ-UF-atM" id="vsl-Il-AYR"/>
+                                            <outlet property="nameLabel" destination="Ycl-CC-LEZ" id="jRW-JQ-VBc"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Grz-gB-exP" id="eZz-nT-89I"/>
+                                    <outlet property="delegate" destination="Grz-gB-exP" id="v8C-Oi-TOx"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="_menuTable" destination="Vxs-O6-A5j" id="fEG-TJ-Ala"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Drj-B7-zhZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="223" y="-158"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="A2i-QI-MG7">
             <objects>
@@ -17,9 +103,9 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3xT-Ry-9pF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="0.0" y="308"/>
+            <point key="canvasLocation" x="243" y="610"/>
         </scene>
-        <!--Twitter Feed View Controller - Twinks!-->
+        <!--Twitter Feed View Controller - Twinks-->
         <scene sceneID="jwC-9s-jy2">
             <objects>
                 <viewController id="jWV-tA-ev8" customClass="TWTwitterFeedViewController" sceneMemberID="viewController">
@@ -87,7 +173,8 @@
                         <color key="backgroundColor" red="0.93935023669365159" green="0.99404885374551955" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <navigationItem key="navigationItem" title="Twinks!" id="scV-DE-EQy">
+                    <navigationItem key="navigationItem" title="Twinks" id="scV-DE-EQy">
+                        <barButtonItem key="leftBarButtonItem" image="reveal-icon.png" id="OUL-wJ-2Oi"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="u6J-XY-17i">
                             <connections>
                                 <action selector="refreshView:" destination="jWV-tA-ev8" id="Ss6-Ji-Bde"/>
@@ -97,6 +184,7 @@
                     <connections>
                         <outlet property="_nameLabel" destination="nLe-Xz-mRi" id="pHM-G1-leq"/>
                         <outlet property="_tweetTable" destination="39F-ka-5Ep" id="hgA-Qc-SxB"/>
+                        <outlet property="revealButton" destination="OUL-wJ-2Oi" id="b15-sQ-2QK"/>
                         <segue destination="8DM-yq-k59" kind="push" id="My2-8z-D64"/>
                     </connections>
                 </viewController>
@@ -157,6 +245,9 @@
             <point key="canvasLocation" x="1124" y="316"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="reveal-icon.png" width="22" height="17"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

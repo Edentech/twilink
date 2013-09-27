@@ -20,6 +20,7 @@
     __weak IBOutlet UILabel *_nameLabel;
     NSArray *_statuses;
 }
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *revealButton;
 
 @end
 
@@ -28,6 +29,13 @@
 #pragma mark loading stuff
 - (void)viewDidLoad
 {
+    [self.revealButton setAction: @selector(revealToggle:)];
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(accountSwitched)
+     name:kAccountSwitchNotification
+     object:nil];
+    
     [super viewDidLoad];
     _nameLabel.text = @"";
     [self updateTimeline];
@@ -35,6 +43,15 @@
 
 - (IBAction)refreshView:(id)sender {
     [self updateTimeline];
+}
+
+-(void) accountSwitched{
+    _statuses = @[];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults removeObjectForKey:kDateKey];
+    [defaults synchronize];
+    [self updateTimeline];
+    [_tweetTable scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
 }
 
 #pragma mark control
@@ -63,25 +80,24 @@
 }
 
 -(void) runTimelineUpdate {
-    static NSString *dateKey = @"REFRESH_RATE";
-    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    NSDate *date = [defaults objectForKey:dateKey];
+    NSDate *date = [defaults objectForKey:kDateKey];
     
     if (!date){
-        [defaults setObject:[NSDate date] forKey:dateKey];
+        [defaults setObject:[NSDate date] forKey:kDateKey];
     } else {
         int elapsedMinutes = abs([date timeIntervalSinceNow]/60);
         if (elapsedMinutes < 5  && _statuses.count > 0){
             [self stopActivityStatusBar];
             return;
         }
-        [defaults setObject:[NSDate date] forKey:dateKey];
+        [defaults setObject:[NSDate date] forKey:kDateKey];
     }
+    [defaults synchronize];
     
     _nameLabel.text = @"";
-    STTwitterAPI *twitter = [STTwitterAPI twitterAPIOSWithFirstAccount];
+    STTwitterAPI *twitter = [STTwitterAPI twitterAPIOSWithAccount:[TWStorage shared].selectedAccount];
     
     [twitter verifyCredentialsWithSuccessBlock:^(NSString *username) {
         
@@ -144,29 +160,15 @@
     NSString *url = urls[0][@"expanded_url"];
     
     NSURL *u = [NSURL URLWithString:url];
-    NSData *data = [NSData dataWithContentsOfURL:u];
-    
-
-    TFHpple *tutorialsParser = [TFHpple hppleWithHTMLData:data];
-
-    NSString *tutorialsXpathQueryString = @"//title";
-    NSString *title = url;
-    NSArray *tutorialsNodes = [tutorialsParser searchWithXPathQuery:tutorialsXpathQueryString];
-    for (TFHppleElement *element in tutorialsNodes) {
-        title = [[element firstChild] content];
-        if (title == nil){
-            title = @"";
-        }
-        title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    }
     
     NSString *userImageUrl = [status valueForKeyPath:@"user.profile_image_url"];
     story.tweetId = idStr;
     story.user = screenName;
     story.tweet = [status valueForKey:@"text"];
-    story.title = (title.length > 0) ? title : story.tweet;
     story.avatar = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:userImageUrl]]];
-    story.timestamp = dateString;
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+//    [format setDateFormat:@"yyyy-MMM-dd HH:mm:ss"];
+    story.timestamp = [format dateFromString:dateString];
     story.url = u;
     
     return story;
@@ -178,6 +180,7 @@
     return [_statuses count];
 }
 
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TWTweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TWTweetCell"];
     
@@ -187,10 +190,22 @@
     
     TWStory *story = [_statuses objectAtIndex:indexPath.row];
     
-    cell.titleText.text = story.title;
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        NSString *tempTitle = [story titleForStory];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            cell.titleText.text = tempTitle;
+        });
+    });
+    
     cell.titleImage.image = story.avatar;
     
-    cell.tweetLabel.text = [NSString stringWithFormat:@"@%@ | %@", story.user, story.timestamp];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    NSString *formattedDateString = [dateFormatter stringFromDate:story.timestamp];
+
+    
+    cell.tweetLabel.text = [NSString stringWithFormat:@"@%@ | %@", story.user, formattedDateString];
     
     return cell;
 }

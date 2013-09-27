@@ -8,14 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TWStory : NSObject
+@interface TWStory : NSObject{
+    BOOL _parsed;
+}
 
 @property (nonatomic, retain) NSString *tweetId;
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) NSString *tweet;
 @property (nonatomic, retain) NSString *user;
 @property (nonatomic, retain) UIImage *avatar;
-@property (nonatomic, retain) NSString *timestamp;
+@property (nonatomic, retain) NSDate *timestamp;
 @property (nonatomic, retain) NSURL *url;
+
+-(NSString *) titleForStory;
 
 @end

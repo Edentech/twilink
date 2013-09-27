@@ -1,5 +1,5 @@
 //
-//  TWStoryViewController.h
+//  TWMenuViewController.h
 //  Twinks
 //
 //  Created by Matthew Mondok on 9/26/13.
@@ -7,10 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@class TWStory;
 
-@interface TWStoryViewController : UIViewController<UIWebViewDelegate>
-
-@property (weak, nonatomic) TWStory *story;
+@interface TWMenuViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
 @end
