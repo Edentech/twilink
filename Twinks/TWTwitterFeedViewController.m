@@ -44,6 +44,7 @@
 }
 
 - (IBAction)refreshView:(id)sender {
+    [[TWStorage shared] twitterAccounts];
     [self updateTimeline];
 }
 
@@ -95,6 +96,10 @@
 }
 
 -(void) runTimelineUpdate {
+    if ([TWStorage shared].selectedAccount == nil){
+        [[TWStorage shared] twitterAccounts];
+    }
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *dateKey = [TWUtilities makeDateKeyForUser];
     
