@@ -58,6 +58,7 @@
     [defaults removeObjectForKey:[TWUtilities makeDateKeyForUser]];
     [defaults synchronize];
     [self updateTimeline];
+    [self.revealViewController revealToggleAnimated:YES];
 }
 
 #pragma mark control
@@ -96,10 +97,6 @@
 }
 
 -(void) runTimelineUpdate {
-    if ([TWStorage shared].selectedAccount == nil){
-        [[TWStorage shared] twitterAccounts];
-    }
-    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *dateKey = [TWUtilities makeDateKeyForUser];
     
@@ -121,7 +118,9 @@
     STTwitterAPI *twitter = [STTwitterAPI twitterAPIOSWithAccount:[TWStorage shared].selectedAccount];
     
     [twitter verifyCredentialsWithSuccessBlock:^(NSString *username) {
-        
+        if ([TWStorage shared].selectedAccount == nil){
+            [[TWStorage shared] twitterAccounts];
+        }
         _nameLabel.text = [NSString stringWithFormat:@"Fetching timeline for @%@", username];
         NSString *lastId = nil;
         NSArray *filteredStatuses = [self statusList];
@@ -149,7 +148,9 @@
                                        }
                                    }
                                }
-                               [_statusCache setValue:tempStatuses forKey:[self currentUserName]];
+ 
+                               [_statusCache setObject:tempStatuses forKey:[self currentUserName]];
+
                                [_tweetTable reloadData];
                                [self stopActivityStatusBar];
                            } errorBlock:^(NSError *error) {
