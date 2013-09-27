@@ -9,5 +9,3 @@
 #import <Foundation/Foundation.h>
 
 #define kAccountSwitchNotification @"Switcheroo"
-
-#define kDateKey @"REFRESH_RATE"

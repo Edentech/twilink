@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9D328BE917F4DAAE00F9C2A3 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D328BE817F4DAAE00F9C2A3 /* MBProgressHUD.m */; };
+		9D328BEC17F53DB600F9C2A3 /* TWUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D328BEB17F53DB600F9C2A3 /* TWUtilities.m */; };
 		9D795B9817F51F4C009D69D1 /* TWStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D795B9717F51F4C009D69D1 /* TWStorage.m */; };
 		9D9B278817F50FDC00358074 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D9B278717F50FDC00358074 /* SWRevealViewController.m */; };
 		9D9B278B17F5118600358074 /* reveal-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D9B278917F5118600358074 /* reveal-icon.png */; };
@@ -67,6 +68,8 @@
 /* Begin PBXFileReference section */
 		9D328BE717F4DAAE00F9C2A3 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		9D328BE817F4DAAE00F9C2A3 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		9D328BEA17F53DB600F9C2A3 /* TWUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWUtilities.h; sourceTree = "<group>"; };
+		9D328BEB17F53DB600F9C2A3 /* TWUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWUtilities.m; sourceTree = "<group>"; };
 		9D795B9617F51F4C009D69D1 /* TWStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWStorage.h; sourceTree = "<group>"; };
 		9D795B9717F51F4C009D69D1 /* TWStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWStorage.m; sourceTree = "<group>"; };
 		9D795B9917F521E3009D69D1 /* TWConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWConstants.h; sourceTree = "<group>"; };
@@ -240,6 +243,8 @@
 				9D795B9617F51F4C009D69D1 /* TWStorage.h */,
 				9D795B9717F51F4C009D69D1 /* TWStorage.m */,
 				9D795B9917F521E3009D69D1 /* TWConstants.h */,
+				9D328BEA17F53DB600F9C2A3 /* TWUtilities.h */,
+				9D328BEB17F53DB600F9C2A3 /* TWUtilities.m */,
 			);
 			path = Twinks;
 			sourceTree = "<group>";
@@ -435,6 +440,7 @@
 				9DC6530517F46A82004D24F9 /* TWStory.m in Sources */,
 				9DC652F517F45E15004D24F9 /* NSString+STTwitter.m in Sources */,
 				9DC652FC17F45E15004D24F9 /* STHTTPRequest.m in Sources */,
+				9D328BEC17F53DB600F9C2A3 /* TWUtilities.m in Sources */,
 				9DC652F717F45E15004D24F9 /* STTwitterAPI.m in Sources */,
 				9D9B279317F5191B00358074 /* TWMenuCell.m in Sources */,
 				9DC652F617F45E15004D24F9 /* STHTTPRequest+STTwitter.m in Sources */,

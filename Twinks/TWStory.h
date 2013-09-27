@@ -19,6 +19,7 @@
 @property (nonatomic, retain) UIImage *avatar;
 @property (nonatomic, retain) NSDate *timestamp;
 @property (nonatomic, retain) NSURL *url;
+@property (nonatomic, retain) NSString *forAccount;
 
 -(NSString *) titleForStory;
 

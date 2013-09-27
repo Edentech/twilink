@@ -10,6 +10,7 @@
 #import "TWStory.h"
 #import "TUSafariActivity.h"
 #import "MBProgressHUD.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface TWStoryViewController (){
     
@@ -52,6 +53,8 @@
     _tweetTextView.text = story.tweet;
     [_webView loadRequest:[NSURLRequest requestWithURL:story.url]];
     _avatarImageView.image = story.avatar;
+    _avatarImageView.layer.cornerRadius = 15.0f;
+    _avatarImageView.clipsToBounds = YES;
 }
 
 - (IBAction)actionTapped:(id)sender {

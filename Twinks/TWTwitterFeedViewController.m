@@ -13,12 +13,13 @@
 #import "TWStory.h"
 #import "TWStoryViewController.h"
 #import "MBProgressHUD.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface TWTwitterFeedViewController (){
     
     __weak IBOutlet UITableView *_tweetTable;
     __weak IBOutlet UILabel *_nameLabel;
-    NSArray *_statuses;
+    NSMutableDictionary *_statusCache;
 }
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *revealButton;
 
@@ -29,6 +30,7 @@
 #pragma mark loading stuff
 - (void)viewDidLoad
 {
+    _statusCache = [[NSMutableDictionary alloc] init];
     [self.revealButton setAction: @selector(revealToggle:)];
     [[NSNotificationCenter defaultCenter]
      addObserver:self
@@ -45,13 +47,16 @@
     [self updateTimeline];
 }
 
+-(void) viewDidAppear:(BOOL)animated{
+    [_tweetTable scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:NO];
+}
+
 -(void) accountSwitched{
-    _statuses = @[];
+    [_tweetTable scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults removeObjectForKey:kDateKey];
+    [defaults removeObjectForKey:[TWUtilities makeDateKeyForUser]];
     [defaults synchronize];
     [self updateTimeline];
-    [_tweetTable scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
 }
 
 #pragma mark control
@@ -70,6 +75,16 @@
 
 #pragma mark load tweets and stories
 
+-(NSString *) currentUserName {
+    return [TWStorage shared].selectedAccount.username;
+}
+
+-(NSArray *) statusList{
+    NSArray *objs = [_statusCache objectForKey:[self currentUserName]];
+    if (!objs) return @[];
+    return objs;
+}
+
 - (void)updateTimeline {
     [self showActivityStatusBar];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
@@ -81,18 +96,19 @@
 
 -(void) runTimelineUpdate {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *dateKey = [TWUtilities makeDateKeyForUser];
     
-    NSDate *date = [defaults objectForKey:kDateKey];
+    NSDate *date = [defaults objectForKey:dateKey];
     
     if (!date){
-        [defaults setObject:[NSDate date] forKey:kDateKey];
+        [defaults setObject:[NSDate date] forKey:dateKey];
     } else {
         int elapsedMinutes = abs([date timeIntervalSinceNow]/60);
-        if (elapsedMinutes < 5  && _statuses.count > 0){
+        if (elapsedMinutes < 5  && [self statusList].count > 0){
             [self stopActivityStatusBar];
             return;
         }
-        [defaults setObject:[NSDate date] forKey:kDateKey];
+        [defaults setObject:[NSDate date] forKey:dateKey];
     }
     [defaults synchronize];
     
@@ -103,31 +119,32 @@
         
         _nameLabel.text = [NSString stringWithFormat:@"Fetching timeline for @%@", username];
         NSString *lastId = nil;
-        if (_statuses.count > 0){
-            TWStory *stry = (TWStory *)[_statuses firstObject];
+        NSArray *filteredStatuses = [self statusList];
+        if (filteredStatuses.count > 0){
+            TWStory *stry = (TWStory *)[filteredStatuses firstObject];
             lastId = stry.tweetId;
         }
         [twitter getHomeTimelineSinceID:lastId
                                   count:50
                            successBlock:^(NSArray *statuses) {
                                
-                               NSLog(@"-- statuses: %@", statuses);
+                               NSLog(@"-- statuses: %lu", (unsigned long)statuses.count);
                                
                                _nameLabel.text = [NSString stringWithFormat:@"@%@", username];
                                
                                //                               self.statuses = statuses;
-                               NSMutableArray *tempStatuses = [[NSMutableArray alloc] initWithArray:_statuses];
+                               NSMutableArray *tempStatuses = [[NSMutableArray alloc] initWithArray:filteredStatuses];
                                for (NSDictionary *d in statuses) {
                                    NSArray *urls = [d valueForKeyPath:@"entities.urls"];
                                    if (urls.count > 0){
                                        TWStory *story = [self storyFromStatus:d];
                                        if (story){
+                                           story.forAccount = username;
                                            [tempStatuses addObject:story];
                                        }
                                    }
                                }
-                               _statuses = tempStatuses;
-                               
+                               [_statusCache setValue:tempStatuses forKey:[self currentUserName]];
                                [_tweetTable reloadData];
                                [self stopActivityStatusBar];
                            } errorBlock:^(NSError *error) {
@@ -145,7 +162,7 @@
     
     NSString *idStr = [status valueForKey:@"id_str"];
     
-    NSArray *existing = [_statuses filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"tweetId = %@", idStr]];
+    NSArray *existing = [[self statusList] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"tweetId = %@", idStr]];
     if (existing.count > 0){
         return nil;
     }
@@ -167,7 +184,7 @@
     story.tweet = [status valueForKey:@"text"];
     story.avatar = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:userImageUrl]]];
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
-//    [format setDateFormat:@"yyyy-MMM-dd HH:mm:ss"];
+    [format setDateFormat:@"EEE MMM dd H:mm:ss ZZZZ yyyy"];
     story.timestamp = [format dateFromString:dateString];
     story.url = u;
     
@@ -177,7 +194,7 @@
 #pragma mark UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [_statuses count];
+    return [[self statusList] count];
 }
 
 
@@ -188,7 +205,10 @@
         cell = [[TWTweetCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"TWTweetCell"];
     }
     
-    TWStory *story = [_statuses objectAtIndex:indexPath.row];
+   // NSLog(@"Index path is %i", indexPath.row);
+    if ([self statusList].count <= indexPath.row) return cell;
+    
+    TWStory *story = [[self statusList] objectAtIndex:indexPath.row];
     
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         NSString *tempTitle = [story titleForStory];
@@ -198,9 +218,11 @@
     });
     
     cell.titleImage.image = story.avatar;
+    cell.titleImage.layer.cornerRadius = 15.0f;
+    cell.titleImage.clipsToBounds = YES;
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    [dateFormatter setDateStyle:NSDateFormatterShortStyle];
     [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
     NSString *formattedDateString = [dateFormatter stringFromDate:story.timestamp];
 
@@ -211,7 +233,7 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    TWStory *story = [_statuses objectAtIndex:indexPath.row];
+    TWStory *story = [[self statusList] objectAtIndex:indexPath.row];
     TWStoryViewController *viewController = (TWStoryViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"TWStoryViewController"];
     viewController.story = story;
     [self.navigationController pushViewController:viewController animated:YES];

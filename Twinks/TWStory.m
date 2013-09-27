@@ -10,7 +10,7 @@
 #import "TFHpple.h"
 
 @implementation TWStory
-@synthesize tweetId,title,tweet,user,avatar,timestamp,url;
+@synthesize tweetId,title,tweet,user,avatar,timestamp,url, forAccount;
 
 -(NSString *) titleForStory{
     if(_parsed){
