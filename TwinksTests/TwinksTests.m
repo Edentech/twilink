@@ -8,11 +8,11 @@
 
 #import <XCTest/XCTest.h>
 
-@interface TwinksTests : XCTestCase
+@interface TwilinksTests : XCTestCase
 
 @end
 
-@implementation TwinksTests
+@implementation TwilinksTests
 
 - (void)setUp
 {
