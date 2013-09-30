@@ -17,7 +17,7 @@
         return title;
     }
     _parsed = true;
-    title = tweet;
+    title = @"";
     NSData *data = [NSData dataWithContentsOfURL:url];
     TFHpple *parser = [TFHpple hppleWithHTMLData:data];
     

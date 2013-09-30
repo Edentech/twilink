@@ -156,8 +156,6 @@
                                NSLog(@"-- statuses: %lu", (unsigned long)statuses.count);
                                
                                _nameLabel.text = [NSString stringWithFormat:@"@%@", username];
-                               
-                               //                               self.statuses = statuses;
                                NSMutableArray *tempStatuses = [[NSMutableArray alloc] initWithArray:filteredStatuses];
                                for (NSDictionary *d in statuses) {
                                    NSArray *urls = [d valueForKeyPath:@"entities.urls"];
@@ -236,7 +234,7 @@
     if ([self statusList].count <= indexPath.row) return cell;
     
     TWStory *story = [[self statusList] objectAtIndex:indexPath.row];
-    
+    cell.titleText.text = @"Loading...";
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         NSString *tempTitle = [story titleForStory];
         dispatch_async(dispatch_get_main_queue(), ^{
