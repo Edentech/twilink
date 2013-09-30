@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9DC6529A17F45C36004D24F9"
-               BuildableName = "twilinks.app"
+               BuildableName = "twilink.app"
                BlueprintName = "twilink"
                ReferencedContainer = "container:twilink.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9DC652BA17F45C37004D24F9"
-               BuildableName = "twilinksTests.xctest"
+               BuildableName = "twilinkTests.xctest"
                BlueprintName = "twilinkTests"
                ReferencedContainer = "container:twilink.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9DC6529A17F45C36004D24F9"
-            BuildableName = "twilinks.app"
+            BuildableName = "twilink.app"
             BlueprintName = "twilink"
             ReferencedContainer = "container:twilink.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9DC6529A17F45C36004D24F9"
-            BuildableName = "twilinks.app"
+            BuildableName = "twilink.app"
             BlueprintName = "twilink"
             ReferencedContainer = "container:twilink.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9DC6529A17F45C36004D24F9"
-            BuildableName = "twilinks.app"
+            BuildableName = "twilink.app"
             BlueprintName = "twilink"
             ReferencedContainer = "container:twilink.xcodeproj">
          </BuildableReference>
