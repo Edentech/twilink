@@ -615,6 +615,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "twilinks/twilink-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -624,6 +625,7 @@
 				);
 				INFOPLIST_FILE = "twilinks/twilink-Info.plist";
 				PRODUCT_NAME = twilink;
+				PROVISIONING_PROFILE = "7D3E820E-A7E4-4E49-B35F-4C21158133DE";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -634,7 +636,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Matthew Mondok (U4295F55X7)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Matthew Mondok";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Matthew Mondok";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "twilinks/twilink-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -644,6 +647,7 @@
 				);
 				INFOPLIST_FILE = "twilinks/twilink-Info.plist";
 				PRODUCT_NAME = twilink;
+				PROVISIONING_PROFILE = "7D3E820E-A7E4-4E49-B35F-4C21158133DE";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
