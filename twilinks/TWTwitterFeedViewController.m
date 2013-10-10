@@ -45,15 +45,19 @@
 
 - (IBAction)refreshView:(id)sender {
     [[TWStorage shared] twitterAccounts];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *dateKey = [TWUtilities makeDateKeyForUser];
+    [defaults removeObjectForKey:dateKey];
+    [defaults synchronize];
     [self updateTimeline];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     if ([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] )
     {
-        
-        UIImage *image = [UIImage imageNamed:@"logo"];
-        [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
+        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"logo"] forBarMetrics:UIBarMetricsDefault];
+        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"logo-landscape"] forBarMetrics:UIBarMetricsLandscapePhone];
+
     }
 }
 

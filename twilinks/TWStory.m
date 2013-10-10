@@ -31,6 +31,9 @@
         }
         title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     }
+    if (!title || title.length == 0){
+        title = @"No Title";
+    }
     return title;
 }
 @end
