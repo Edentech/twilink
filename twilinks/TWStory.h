@@ -21,8 +21,8 @@
 @property (nonatomic, retain) NSURL *url;
 @property (nonatomic, retain) NSString *forAccount;
 @property (nonatomic, retain) NSString *realName;
-@property int retweets;
-@property int favoritesCount;
+@property (nonatomic, retain) NSString *retweets;
+@property (nonatomic, retain) NSString *favoritesCount;
 
 -(NSString *) titleForStory;
 

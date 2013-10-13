@@ -46,7 +46,11 @@
     {
         
         [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+        [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsLandscapePhone];
     }
+    
+    _tweetTextView.contentInset = UIEdgeInsetsMake(-10,-2,0,0);
+    
     [self showActivityStatusBar];
     [self setup];
     [super viewDidLoad];

@@ -247,34 +247,34 @@
 		9DC652A617F45C36004D24F9 /* twilink */ = {
 			isa = PBXGroup;
 			children = (
-				9DC652A717F45C36004D24F9 /* Supporting Files */,
-				9D9B279017F5155300358074 /* third_party */,
 				9DC652B517F45C37004D24F9 /* Images.xcassets */,
 				9DC652D317F45C59004D24F9 /* Main_iPhone.storyboard */,
+				9DC652A717F45C36004D24F9 /* Supporting Files */,
+				9D9B279017F5155300358074 /* third_party */,
+				9D00EBDE17F91D0100603032 /* TWAboutViewController.h */,
+				9D00EBDF17F91D0100603032 /* TWAboutViewController.m */,
 				9DC652AF17F45C36004D24F9 /* TWAppDelegate.h */,
 				9DC652B017F45C36004D24F9 /* TWAppDelegate.m */,
+				9D795B9917F521E3009D69D1 /* TWConstants.h */,
 				9DC652B217F45C36004D24F9 /* twilinks.xcdatamodeld */,
+				9D9B279117F5191B00358074 /* TWMenuCell.h */,
+				9D9B279217F5191B00358074 /* TWMenuCell.m */,
 				9D9B278D17F5130200358074 /* TWMenuViewController.h */,
 				9D9B278E17F5130200358074 /* TWMenuViewController.m */,
+				9D795B9617F51F4C009D69D1 /* TWStorage.h */,
+				9D795B9717F51F4C009D69D1 /* TWStorage.m */,
 				9DC6530317F46A82004D24F9 /* TWStory.h */,
 				9DC6530417F46A82004D24F9 /* TWStory.m */,
 				9DC6530617F46DD3004D24F9 /* TWStoryViewController.h */,
 				9DC6530717F46DD3004D24F9 /* TWStoryViewController.m */,
 				9DC6530017F460A8004D24F9 /* TWTweetCell.h */,
 				9DC6530117F460A8004D24F9 /* TWTweetCell.m */,
-				9DC652FD17F45E5B004D24F9 /* TWTwitterFeedViewController.h */,
-				9DC652FE17F45E5B004D24F9 /* TWTwitterFeedViewController.m */,
-				9D9B279117F5191B00358074 /* TWMenuCell.h */,
-				9D9B279217F5191B00358074 /* TWMenuCell.m */,
-				9D795B9617F51F4C009D69D1 /* TWStorage.h */,
-				9D795B9717F51F4C009D69D1 /* TWStorage.m */,
-				9D795B9917F521E3009D69D1 /* TWConstants.h */,
-				9D328BEA17F53DB600F9C2A3 /* TWUtilities.h */,
-				9D328BEB17F53DB600F9C2A3 /* TWUtilities.m */,
-				9D00EBDE17F91D0100603032 /* TWAboutViewController.h */,
-				9D00EBDF17F91D0100603032 /* TWAboutViewController.m */,
 				9D94371E180A3B6100BA2296 /* TWTweetDetailsViewController.h */,
 				9D94371F180A3B6100BA2296 /* TWTweetDetailsViewController.m */,
+				9DC652FD17F45E5B004D24F9 /* TWTwitterFeedViewController.h */,
+				9DC652FE17F45E5B004D24F9 /* TWTwitterFeedViewController.m */,
+				9D328BEA17F53DB600F9C2A3 /* TWUtilities.h */,
+				9D328BEB17F53DB600F9C2A3 /* TWUtilities.m */,
 			);
 			name = twilink;
 			path = twilinks;
@@ -636,7 +636,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Edentech Solutions Group, LLC (A2R33ZE868)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "twilinks/twilink-Prefix.pch";
