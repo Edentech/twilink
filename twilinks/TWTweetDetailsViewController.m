@@ -53,15 +53,20 @@
 }
 
 -(void) setupDossier{
-    _twitterImage.image = story.avatar;
-    _twitterRealName.text = story.realName;
-    _tweetText.text = story.tweet;
-    _twitterHandle.text = story.user;
-    _tweetFaves.text = [NSString stringWithFormat:@"%i", story.favoritesCount];
-    _tweetRTs.text = [NSString stringWithFormat:@"%i", story.retweets];
-    
-    _tweetLink.text = [story.url absoluteString];
-    _tweetLinkPageTitle.text = [story titleForStory];
+    @try {
+        _twitterImage.image = story.avatar;
+        _twitterRealName.text = story.realName;
+        _tweetText.text = story.tweet;
+        _twitterHandle.text = story.user;
+        _tweetFaves.text = [NSString stringWithFormat:@"%i", story.favoritesCount];
+        _tweetRTs.text = [NSString stringWithFormat:@"%i", story.retweets];
+        
+        _tweetLink.text = [story.url absoluteString];
+        _tweetLinkPageTitle.text = [story titleForStory];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"%@", [exception debugDescription]);
+    }
 }
 
 -(void) setupView{
