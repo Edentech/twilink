@@ -20,6 +20,7 @@
     __weak IBOutlet UITableView *_tweetTable;
     __weak IBOutlet UILabel *_nameLabel;
     NSMutableDictionary *_statusCache;
+    UIRefreshControl *_refreshControl;
 }
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *revealButton;
 
@@ -30,6 +31,13 @@
 #pragma mark loading stuff
 - (void)viewDidLoad
 {
+    _refreshControl = [[UIRefreshControl alloc]
+                                        init];
+    _refreshControl.tintColor = [UIColor grayColor];
+    [_refreshControl addTarget:self action:@selector(updateTimeline) forControlEvents:UIControlEventValueChanged];
+    [_tweetTable addSubview:_refreshControl];
+
+    
     _statusCache = [[NSMutableDictionary alloc] init];
     [self.revealButton setAction: @selector(revealToggle:)];
     [[NSNotificationCenter defaultCenter]
@@ -50,6 +58,7 @@
     [defaults removeObjectForKey:dateKey];
     [defaults synchronize];
     [self updateTimeline];
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -105,6 +114,7 @@
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         [self runTimelineUpdate];
         dispatch_async(dispatch_get_main_queue(), ^{
+            [_refreshControl endRefreshing];
         });
     });
 }
@@ -208,6 +218,7 @@
     NSURL *u = [NSURL URLWithString:url];
     
     NSString *userImageUrl = [status valueForKeyPath:@"user.profile_image_url"];
+    NSLog(@"%@", status);
     story.tweetId = idStr;
     story.user = screenName;
     story.tweet = [status valueForKey:@"text"];
@@ -216,7 +227,9 @@
     [format setDateFormat:@"EEE MMM dd H:mm:ss ZZZZ yyyy"];
     story.timestamp = [format dateFromString:dateString];
     story.url = u;
-    
+    story.favoritesCount = (int)[status valueForKeyPath:@"favorite_count"];
+    story.retweets = (int)[status valueForKeyPath:@"retweet_count"];
+    story.realName = [status valueForKeyPath:@"user.name"];
     return story;
 }
 
@@ -262,6 +275,7 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+
     TWStory *story = [[self statusList] objectAtIndex:indexPath.row];
     TWStoryViewController *viewController = (TWStoryViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"TWStoryViewController"];
     viewController.story = story;

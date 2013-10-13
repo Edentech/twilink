@@ -10,6 +10,7 @@
 #import "TWStory.h"
 #import "TUSafariActivity.h"
 #import "MBProgressHUD.h"
+#import "TWTweetDetailsViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface TWStoryViewController (){
@@ -50,7 +51,6 @@
     [self setup];
     [super viewDidLoad];
     _webView.delegate = self;
-	// Do any additional setup after loading the view.
 }
 
 -(void) setup{
@@ -60,6 +60,13 @@
     _avatarImageView.image = story.avatar;
     _avatarImageView.layer.cornerRadius = 15.0f;
     _avatarImageView.clipsToBounds = YES;
+}
+
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    TWTweetDetailsViewController *controller =
+    (TWTweetDetailsViewController *)[segue destinationViewController];
+    
+    controller.story = story;
 }
 
 - (IBAction)actionTapped:(id)sender {

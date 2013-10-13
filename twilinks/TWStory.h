@@ -20,6 +20,9 @@
 @property (nonatomic, retain) NSDate *timestamp;
 @property (nonatomic, retain) NSURL *url;
 @property (nonatomic, retain) NSString *forAccount;
+@property (nonatomic, retain) NSString *realName;
+@property int retweets;
+@property int favoritesCount;
 
 -(NSString *) titleForStory;
 

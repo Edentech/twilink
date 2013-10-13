@@ -680,7 +680,7 @@ static NSString * const SWSegueRightIdentifier = @"sw_right";
 {    
     [self revealToggleAnimated:YES];
 }
-
+    
 - (void)rightRevealToggle:(id)sender
 {    
     [self rightRevealToggleAnimated:YES];
