@@ -13,27 +13,35 @@
 @synthesize tweetId,title,tweet,user,avatar,timestamp,url, forAccount;
 
 -(NSString *) titleForStory{
-    if(_parsed){
+    @try {
+        if(_parsed){
+            return title;
+        }
+        title = @"";
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        TFHpple *parser = [TFHpple hppleWithHTMLData:data];
+        
+        NSString *xpath = @"//title";
+        
+        NSArray *nodes = [parser searchWithXPathQuery:xpath];
+        for (TFHppleElement *element in nodes) {
+            title = [[element firstChild] content];
+            if (title == nil){
+                title = tweet;
+            }
+            title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        }
+        if (!title || title.length == 0){
+            title = @"No Title";
+        }
         return title;
     }
-    _parsed = true;
-    title = @"";
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    TFHpple *parser = [TFHpple hppleWithHTMLData:data];
-    
-    NSString *xpath = @"//title";
-    
-    NSArray *nodes = [parser searchWithXPathQuery:xpath];
-    for (TFHppleElement *element in nodes) {
-        title = [[element firstChild] content];
-        if (title == nil){
-            title = tweet;
-        }
-        title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    @catch (NSException *exception) {
+        NSLog(@"%@", exception.debugDescription);
     }
-    if (!title || title.length == 0){
-        title = @"No Title";
+    @finally {
+        _parsed = true;
+        return title;
     }
-    return title;
 }
 @end

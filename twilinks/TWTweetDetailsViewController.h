@@ -14,4 +14,6 @@
 
 @property (weak) TWStory *story;
 
+-(void) setupDossier;
+
 @end

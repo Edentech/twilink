@@ -636,7 +636,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Edentech Solutions Group, LLC (A2R33ZE868)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "twilinks/twilink-Prefix.pch";
@@ -647,7 +647,7 @@
 				);
 				INFOPLIST_FILE = "twilinks/twilink-Info.plist";
 				PRODUCT_NAME = twilink;
-				PROVISIONING_PROFILE = "A925AA90-12AA-42DB-BB87-16A51E8FDBC6";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -658,8 +658,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Edentech Solutions Group, LLC (A2R33ZE868)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Edentech Solutions Group, LLC (A2R33ZE868)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "twilinks/twilink-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -669,7 +669,7 @@
 				);
 				INFOPLIST_FILE = "twilinks/twilink-Info.plist";
 				PRODUCT_NAME = twilink;
-				PROVISIONING_PROFILE = "A925AA90-12AA-42DB-BB87-16A51E8FDBC6";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

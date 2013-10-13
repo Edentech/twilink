@@ -66,11 +66,17 @@
     _avatarImageView.clipsToBounds = YES;
 }
 
--(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    TWTweetDetailsViewController *controller =
-    (TWTweetDetailsViewController *)[segue destinationViewController];
-    
+- (IBAction)tweetDetailsTapped:(id)sender {
+    TWTweetDetailsViewController *controller = [[self storyboard] instantiateViewControllerWithIdentifier:@"TWTweetDetailsViewController"];
+
+    if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)){
+        [self.navigationController pushViewController:controller animated:YES];
+    } else {
+        [self navigationController].modalTransitionStyle = UIModalTransitionStylePartialCurl;
+        [self presentViewController:controller animated:YES completion:nil];
+    }
     controller.story = story;
+    [controller setupDossier];
 }
 
 - (IBAction)actionTapped:(id)sender {

@@ -43,8 +43,6 @@
     _tweetLink.contentInset = UIEdgeInsetsMake(-10,-2,0,0);
     _tweetLinkPageTitle.contentInset = UIEdgeInsetsMake(-10,-2,0,0);
     [self setupView];
-    [self setupDossier];
-
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
@@ -65,7 +63,8 @@
         _tweetRTs.text = story.retweets;
         
         _tweetLink.text = [story.url absoluteString];
-        _tweetLinkPageTitle.text = [story titleForStory];
+        _tweetLinkPageTitle.text = story.title;
+        self.title = story.tweet;
     }
     @catch (NSException *exception) {
         NSLog(@"%@", [exception debugDescription]);
