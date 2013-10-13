@@ -227,8 +227,8 @@
     [format setDateFormat:@"EEE MMM dd H:mm:ss ZZZZ yyyy"];
     story.timestamp = [format dateFromString:dateString];
     story.url = u;
-    story.favoritesCount = [status valueForKeyPath:@"favorite_count"];
-    story.retweets = [status valueForKeyPath:@"retweet_count"];
+    story.favoritesCount = [[status valueForKeyPath:@"favorite_count"] stringValue];
+    story.retweets = [[status valueForKeyPath:@"retweet_count"] stringValue];
     story.realName = [status valueForKeyPath:@"user.name"];
     return story;
 }
