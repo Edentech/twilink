@@ -39,6 +39,9 @@
 
 - (void)viewDidLoad
 {
+    _tweetText.contentInset = UIEdgeInsetsMake(-10,-2,0,0);
+    _tweetLink.contentInset = UIEdgeInsetsMake(-10,-2,0,0);
+    _tweetLinkPageTitle.contentInset = UIEdgeInsetsMake(-10,-2,0,0);
     [self setupView];
     [self setupDossier];
 
@@ -58,8 +61,8 @@
         _twitterRealName.text = story.realName;
         _tweetText.text = story.tweet;
         _twitterHandle.text = story.user;
-        _tweetFaves.text = [NSString stringWithFormat:@"%i", story.favoritesCount];
-        _tweetRTs.text = [NSString stringWithFormat:@"%i", story.retweets];
+        _tweetFaves.text =story.favoritesCount;
+        _tweetRTs.text = story.retweets;
         
         _tweetLink.text = [story.url absoluteString];
         _tweetLinkPageTitle.text = [story titleForStory];

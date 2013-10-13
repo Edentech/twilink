@@ -227,8 +227,8 @@
     [format setDateFormat:@"EEE MMM dd H:mm:ss ZZZZ yyyy"];
     story.timestamp = [format dateFromString:dateString];
     story.url = u;
-    story.favoritesCount = (int)[status valueForKeyPath:@"favorite_count"];
-    story.retweets = (int)[status valueForKeyPath:@"retweet_count"];
+    story.favoritesCount = [status valueForKeyPath:@"favorite_count"];
+    story.retweets = [status valueForKeyPath:@"retweet_count"];
     story.realName = [status valueForKeyPath:@"user.name"];
     return story;
 }
@@ -251,6 +251,7 @@
     if ([self statusList].count <= indexPath.row) return cell;
     
     TWStory *story = [[self statusList] objectAtIndex:indexPath.row];
+    cell.titleText.contentInset = UIEdgeInsetsMake(-10,-2,0,0);
     cell.titleText.text = @"Loading...";
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         NSString *tempTitle = [story titleForStory];
