@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9D00EBDB17F90D5800603032 /* logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D00EBDA17F90D5800603032 /* logo@2x.png */; };
-		9D00EBDD17F90DC000603032 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D00EBDC17F90DC000603032 /* logo.png */; };
+		9D00EBDD17F90DC000603032 /* logo-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D00EBDC17F90DC000603032 /* logo-small.png */; };
 		9D00EBE017F91D0100603032 /* TWAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D00EBDF17F91D0100603032 /* TWAboutViewController.m */; };
 		9D00EBE217F91E9400603032 /* logo_et@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D00EBE117F91E9400603032 /* logo_et@2x.png */; };
 		9D00EBE417F91ED900603032 /* logo_et.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D00EBE317F91ED900603032 /* logo_et.png */; };
@@ -16,6 +16,8 @@
 		9D328BEC17F53DB600F9C2A3 /* TWUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D328BEB17F53DB600F9C2A3 /* TWUtilities.m */; };
 		9D5E1498180751ED00EBCFAC /* logo-landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D5E1496180751ED00EBCFAC /* logo-landscape.png */; };
 		9D5E1499180751ED00EBCFAC /* logo-landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D5E1497180751ED00EBCFAC /* logo-landscape@2x.png */; };
+		9D670A5218D4CCEC005F0EB0 /* logo_ios7.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D670A5018D4CCEC005F0EB0 /* logo_ios7.png */; };
+		9D670A5318D4CCEC005F0EB0 /* logo_ios7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D670A5118D4CCEC005F0EB0 /* logo_ios7@2x.png */; };
 		9D795B9817F51F4C009D69D1 /* TWStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D795B9717F51F4C009D69D1 /* TWStorage.m */; };
 		9D94371C180A3A0600BA2296 /* bird.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D94371A180A3A0600BA2296 /* bird.png */; };
 		9D94371D180A3A0600BA2296 /* bird@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D94371B180A3A0600BA2296 /* bird@2x.png */; };
@@ -79,7 +81,7 @@
 
 /* Begin PBXFileReference section */
 		9D00EBDA17F90D5800603032 /* logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo@2x.png"; sourceTree = "<group>"; };
-		9D00EBDC17F90DC000603032 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		9D00EBDC17F90DC000603032 /* logo-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo-small.png"; sourceTree = "<group>"; };
 		9D00EBDE17F91D0100603032 /* TWAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWAboutViewController.h; sourceTree = "<group>"; };
 		9D00EBDF17F91D0100603032 /* TWAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWAboutViewController.m; sourceTree = "<group>"; };
 		9D00EBE117F91E9400603032 /* logo_et@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_et@2x.png"; sourceTree = "<group>"; };
@@ -90,6 +92,8 @@
 		9D328BEB17F53DB600F9C2A3 /* TWUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWUtilities.m; sourceTree = "<group>"; };
 		9D5E1496180751ED00EBCFAC /* logo-landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo-landscape.png"; sourceTree = "<group>"; };
 		9D5E1497180751ED00EBCFAC /* logo-landscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo-landscape@2x.png"; sourceTree = "<group>"; };
+		9D670A5018D4CCEC005F0EB0 /* logo_ios7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_ios7.png; sourceTree = "<group>"; };
+		9D670A5118D4CCEC005F0EB0 /* logo_ios7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_ios7@2x.png"; sourceTree = "<group>"; };
 		9D795B9617F51F4C009D69D1 /* TWStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWStorage.h; sourceTree = "<group>"; };
 		9D795B9717F51F4C009D69D1 /* TWStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWStorage.m; sourceTree = "<group>"; };
 		9D795B9917F521E3009D69D1 /* TWConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWConstants.h; sourceTree = "<group>"; };
@@ -283,6 +287,8 @@
 		9DC652A717F45C36004D24F9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9D670A5018D4CCEC005F0EB0 /* logo_ios7.png */,
+				9D670A5118D4CCEC005F0EB0 /* logo_ios7@2x.png */,
 				9D943721180A413800BA2296 /* dossier.png */,
 				9D943722180A413800BA2296 /* dossier@2x.png */,
 				9D94371A180A3A0600BA2296 /* bird.png */,
@@ -291,7 +297,7 @@
 				9D5E1497180751ED00EBCFAC /* logo-landscape@2x.png */,
 				9D00EBE317F91ED900603032 /* logo_et.png */,
 				9D00EBE117F91E9400603032 /* logo_et@2x.png */,
-				9D00EBDC17F90DC000603032 /* logo.png */,
+				9D00EBDC17F90DC000603032 /* logo-small.png */,
 				9D00EBDA17F90D5800603032 /* logo@2x.png */,
 				9D9B278917F5118600358074 /* reveal-icon.png */,
 				9D9B278A17F5118600358074 /* reveal-icon@2x.png */,
@@ -455,7 +461,7 @@
 				9D00EBE417F91ED900603032 /* logo_et.png in Resources */,
 				9DC6531417F4788F004D24F9 /* Safari@2x~ipad.png in Resources */,
 				9D5E1499180751ED00EBCFAC /* logo-landscape@2x.png in Resources */,
-				9D00EBDD17F90DC000603032 /* logo.png in Resources */,
+				9D00EBDD17F90DC000603032 /* logo-small.png in Resources */,
 				9D943724180A413800BA2296 /* dossier@2x.png in Resources */,
 				9D00EBE217F91E9400603032 /* logo_et@2x.png in Resources */,
 				9DC6531317F4788F004D24F9 /* Safari@2x.png in Resources */,
@@ -465,10 +471,12 @@
 				9D00EBDB17F90D5800603032 /* logo@2x.png in Resources */,
 				9D943723180A413800BA2296 /* dossier.png in Resources */,
 				9D9B278C17F5118600358074 /* reveal-icon@2x.png in Resources */,
+				9D670A5318D4CCEC005F0EB0 /* logo_ios7@2x.png in Resources */,
 				9D5E1498180751ED00EBCFAC /* logo-landscape.png in Resources */,
 				9D94371C180A3A0600BA2296 /* bird.png in Resources */,
 				9DC6531217F4788F004D24F9 /* Safari.png in Resources */,
 				9DC6531517F4788F004D24F9 /* Safari~ipad.png in Resources */,
+				9D670A5218D4CCEC005F0EB0 /* logo_ios7.png in Resources */,
 				9D9B278B17F5118600358074 /* reveal-icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
