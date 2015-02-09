@@ -34,8 +34,9 @@
     if ([_navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] )
     {
         
-        UIImage *image = [UIImage imageNamed:@"logo"];
-        [_navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
+        UIImage *img = [[UIImage imageNamed:@"navbarlogo"]
+                        resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0) resizingMode:UIImageResizingModeStretch];
+        [_navigationBar setBackgroundImage:img forBarMetrics:UIBarMetricsDefault];
     }
     [super viewDidLoad];
 	// Do any additional setup after loading the view.

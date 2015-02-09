@@ -64,8 +64,14 @@
 -(void)viewWillAppear:(BOOL)animated{
     if ([self.navigationController.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)] )
     {
-        [self.navigationController.navigationBar setBackgroundImage:[[UIImage imageNamed:@"logo_ios7" ] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)] forBarMetrics:UIBarMetricsDefault];
-        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"logo-landscape"] forBarMetrics:UIBarMetricsLandscapePhone];
+        UIImage *img = [[UIImage imageNamed:@"navbarlogo"]
+                        resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0) resizingMode:UIImageResizingModeStretch];
+        
+        [self.navigationController.navigationBar setBackgroundImage:img forBarMetrics:UIBarMetricsDefault];
+        
+//        [self.navigationController.navigationBar setBackgroundImage:[[UIImage imageNamed:@"logo" ] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)] forBarMetrics:UIBarMetricsDefault];
+        
+//        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"logo"] forBarMetrics:UIBarMetricsCompact];
     }
 }
 
